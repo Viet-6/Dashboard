@@ -25,8 +25,8 @@ namespace Integration.Pages
                 id.Add(t.Rows[i][0].ToString());
             }
         }
-        private void BPDataSeparateHandle(DataTable first_table, DataTable second_table,
-            List<string> first_table_key, List<string> second_table_key)//Benefit Paid data Separate Handle
+        private void TEDataSeparateHandle(DataTable first_table, DataTable second_table,
+            List<string> first_table_key, List<string> second_table_key)//Total Earning data Separate Handle
         {
             foreach (var key in first_table_key)
             {
@@ -43,7 +43,11 @@ namespace Integration.Pages
             for (int i = 0; i < first_table.Rows.Count; i++)
             {
                 if (first_table.Rows[i]["Employee ID"].ToString() == second_table.Rows[i]["Employee ID"].ToString())
+                {
                     first_table.Rows[i]["Paid To Date"] = second_table.Rows[i]["Paid To Date"].ToString();
+                    first_table.Rows[i]["Paid Last Year"] = second_table.Rows[i]["Paid Last Year"].ToString();
+                }
+                    
             }
             first_table.AcceptChanges();
         }
@@ -55,13 +59,14 @@ namespace Integration.Pages
                 SqlConnection SqlConn = new SqlConnection(connectstring);
                 SqlConn.Open();
                 sql = "SELECT CAST(Personal.Employee_ID AS integer) AS 'Employee ID', First_Name AS 'Name', Shareholder_Status As 'Shareholder', " +
-                    "Plan_Name AS 'Benefit Plans', Deductable, Percentage_CoPay AS 'Percentage CoPay' " +
-                    "FROM Personal, Benefit_Plans where Personal.Benefit_Plans = Benefit_Plans.Benefit_Plan_ID";
+                    " Gender, Ethnicity, Employment_Status AS 'Employment', Department " +
+                    "FROM Personal, Employment, Job_History where Personal.Employee_ID = Job_History.Employee_ID And Personal.Employee_ID = Employment.Employee_ID";
                 SqlDataAdapter SqlAdapter = new SqlDataAdapter(sql, SqlConn);
                 DataTable DT = new DataTable();
                 DT.PrimaryKey = new DataColumn[] { DT.Columns["Employee ID"] };
                 SqlAdapter.Fill(DT);
                 DT.Columns.Add("Paid To Date", typeof(decimal));
+                DT.Columns.Add("Paid Last Year", typeof(decimal));
                 SqlConn.Close();
                 List<string> hrID = new List<string>();
                 AddID(DT, hrID);
@@ -73,15 +78,15 @@ namespace Integration.Pages
                 ds.PrimaryKey = new DataColumn[] { ds.Columns["Employee ID"] };
                 foreach (var item in hrID)
                 {
-                    query = "select idEmployee AS 'Employee ID',`Paid To Date` from Employee " +
-                        "where Employee.idEmployee = '" + item + "' AND `Paid To Date` IS NOT NULL";
+                    query = "select idEmployee AS 'Employee ID',`Paid To Date`, `Paid Last Year` from Employee " +
+                        "where Employee.idEmployee = '" + item + "' AND `Paid To Date` IS NOT NULL AND `Paid Last Year` IS NOT NULL";
                     MySqlDataAdapter sda = new MySqlDataAdapter(query, constr);
                     sda.Fill(ds);
                 }
                 con.Close();
                 List<string> prID = new List<string>();
                 AddID(ds, prID);
-                BPDataSeparateHandle(DT, ds, hrID, prID);
+                TEDataSeparateHandle(DT, ds, hrID, prID);
                 GridView1.DataSource = DT;
                 GridView1.DataBind();
             }
