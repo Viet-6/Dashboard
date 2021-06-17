@@ -96,6 +96,7 @@
     <Content Include="css\site.css" />
     <Content Include="css\Table.css" />
     <Content Include="css\Table_day.css" />
+    <Content Include="data\SI+Payroll+DB.sql" />
     <Content Include="images\bg.jpg" />
     <Content Include="images\face.jpg" />
     <Content Include="images\favicon.ico" />
@@ -195,6 +196,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="data\Empty_Data\HR.bak" />
+    <Content Include="data\Empty_Data\SI+Payroll+DB.mwb" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -241,9 +244,7 @@
     <Content Include="webfonts\fonts\iconic\fonts\Material-Design-Iconic-Font.woff" />
     <Content Include="webfonts\fonts\iconic\fonts\Material-Design-Iconic-Font.woff2" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="data\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

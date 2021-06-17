@@ -15,6 +15,7 @@
           href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" />
 </head>
 <body>
+    <form runat="server">
     <input type="checkbox" name="" id="nav-toggle" />
     <div class="slidebar">
         <div class="slidebar-brand">
@@ -104,9 +105,7 @@
                                 <h2 class="h3 mb-0 page-title">Add Contact</h2>
                             </div>
                             <div class="col-auto">
-                                <button type="button" class="btn btn-primary">
-                                    Save Change
-                                </button>
+                                <asp:Button class="btn btn-primary" ID="btn_add" runat="server" Text="Save Change" onclick="Add_Click"></asp:button>
                             </div>
                         </div>
                         <form>
@@ -114,7 +113,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="">Employee ID</label>
-                                    <input class="form-control" id="" />
+                                    <asp:TextBox ID="EmployeeIDText" runat="server" class="form-control"></asp:TextBox>
                                 </div>
                                 <div class="form-group col-md-4">
 
@@ -126,65 +125,65 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="firstname">Firstname</label>
-                                    <input type="text" id="firstname" class="form-control" />
+                                    <asp:TextBox ID="firstnameText" runat="server" class="form-control"></asp:TextBox>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="lastname">Lastname</label>
-                                    <input type="text" id="lastname" class="form-control" />
+                                   <asp:TextBox ID="lastnameText" runat="server" class="form-control"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-8">
                                     <label for="">Email</label>
-                                    <input type="email" class="form-control" id="" />
+                                    <asp:TextBox type ="email" ID="Email" runat="server" class="form-control"></asp:TextBox>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="">Phone Number</label>
-                                    <input type="text" class="form-control" id="" />
+                                    <asp:TextBox ID="Phone_Number" runat="server" class="form-control"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <form action="">
                                         <label for="birthday">Birthday</label>
-                                        <input class="form-control" type="date" id="birthday" name="birthday">
+                                        <asp:TextBox type ="date" ID="BirthdaySelect" runat="server" class="form-control"></asp:TextBox>
                                     </form>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="">Job ID</label>
-                                    <input class="form-control" id="" />
+                                    <asp:TextBox ID="Job_ID" runat="server" class="form-control"></asp:TextBox>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="">Benefit plan ID</label>
-                                    <input id="" class="form-control" />
+                                    <asp:TextBox ID="BenefitPlanID" runat="server" class="form-control"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="">Employee Number</label>
-                                    <input type="text" id="lastname" class="form-control" />
+                                    <asp:TextBox ID="EmployeeNum" runat="server" class="form-control"></asp:TextBox>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="">SSN (Social Security Number)</label>
-                                    <input type="text" id="firstname" class="form-control" />
+                                    <asp:TextBox ID="SSN" runat="server" class="form-control"></asp:TextBox>
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="">ID Pay Rates</label>
-                                    <input id="" class="form-control" />
+                                    <asp:TextBox ID="IDPayRates" runat="server" class="form-control"></asp:TextBox>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="">Shareholder Status</label>
-                                    <select id="" class="form-control">
+                                    <select id="Shareholder" class="form-control">
                                         <option value="female">...</option>
                                         <option value="male">...</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="">Department</label>
-                                    <select id="" class="form-control">
+                                    <select id="department" class="form-control">
                                         <option value="female">...</option>
                                         <option value="male">...</option>
                                     </select>
@@ -196,5 +195,6 @@
             </div>
         </main>
     </div>
+        </form>
 </body>
 </html>

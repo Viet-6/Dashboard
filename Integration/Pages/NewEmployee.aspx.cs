@@ -13,5 +13,9 @@ namespace Integration.Pages
         {
 
         }
+        protected void Add_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
