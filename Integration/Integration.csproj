@@ -43,6 +43,10 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MySql.Data, Version=8.0.25.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data.Entity, Version=6.9.8.99, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data.EntityFramework, Version=8.0.25.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Web, Version=8.0.25.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -95,6 +99,16 @@
     <Content Include="images\bg.jpg" />
     <Content Include="images\face.jpg" />
     <Content Include="images\favicon.ico" />
+    <Content Include="Pages\AccumulatedVacation.aspx" />
+    <Content Include="Pages\BenefitsPaid.aspx" />
+    <Content Include="Pages\Birthday.aspx" />
+    <Content Include="Pages\ChangeBenefitsPlan.aspx" />
+    <Content Include="Pages\Dashboard.aspx" />
+    <Content Include="Pages\HiringAnniversary.aspx" />
+    <Content Include="Pages\Index.aspx" />
+    <Content Include="Pages\NewEmployee.aspx" />
+    <Content Include="Pages\TotalEarning.aspx" />
+    <Content Include="Pages\VacationDays.aspx" />
     <Content Include="Web.config" />
     <Content Include="webfonts\fa-brands-400.svg" />
     <Content Include="webfonts\fa-regular-400.svg" />
@@ -107,20 +121,80 @@
     <Content Include="webfonts\fonts\iconic\fonts\Material-Design-Iconic-Font.svg" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\AccumulatedVacation.aspx.cs">
+      <DependentUpon>AccumulatedVacation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\AccumulatedVacation.aspx.designer.cs">
+      <DependentUpon>AccumulatedVacation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BenefitsPaid.aspx.cs">
+      <DependentUpon>BenefitsPaid.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\BenefitsPaid.aspx.designer.cs">
+      <DependentUpon>BenefitsPaid.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Birthday.aspx.cs">
+      <DependentUpon>Birthday.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Birthday.aspx.designer.cs">
+      <DependentUpon>Birthday.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ChangeBenefitsPlan.aspx.cs">
+      <DependentUpon>ChangeBenefitsPlan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ChangeBenefitsPlan.aspx.designer.cs">
+      <DependentUpon>ChangeBenefitsPlan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\HiringAnniversary.aspx.cs">
+      <DependentUpon>HiringAnniversary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\HiringAnniversary.aspx.designer.cs">
+      <DependentUpon>HiringAnniversary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\NewEmployee.aspx.cs">
+      <DependentUpon>NewEmployee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\NewEmployee.aspx.designer.cs">
+      <DependentUpon>NewEmployee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TotalEarning.aspx.cs">
+      <DependentUpon>TotalEarning.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\TotalEarning.aspx.designer.cs">
+      <DependentUpon>TotalEarning.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VacationDays.aspx.cs">
+      <DependentUpon>VacationDays.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\VacationDays.aspx.designer.cs">
+      <DependentUpon>VacationDays.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="Pages\Index.cshtml" />
-    <Content Include="Pages\TotalEarning.cshtml" />
-    <Content Include="Pages\VacationDays.cshtml" />
-    <Content Include="Pages\Dashboard.cshtml" />
-    <Content Include="Pages\AccumulatedVacation.cshtml" />
-    <Content Include="Pages\BenefitsPaid.cshtml" />
-    <Content Include="Pages\Birthday.cshtml" />
-    <Content Include="Pages\ChangeBenefitsPlan.cshtml" />
-    <Content Include="Pages\HiringAnniversary.cshtml" />
-    <Content Include="Pages\NewEmployee.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -167,7 +241,9 @@
     <Content Include="webfonts\fonts\iconic\fonts\Material-Design-Iconic-Font.woff" />
     <Content Include="webfonts\fonts\iconic\fonts\Material-Design-Iconic-Font.woff2" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="data\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

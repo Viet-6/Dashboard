@@ -1,6 +1,5 @@
-﻿@{
-    Layout = null;
-}
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="Integration.Pages.Index" %>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,11 +7,11 @@
     <title>Login</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="~/images/favicon.ico">
+    <link rel="shortcut icon" href="../images/favicon.ico">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-    <link rel="stylesheet" href="~/webfonts/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="~/webfonts/fonts/iconic/css/material-design-iconic-font.min.css">
-    <link rel="stylesheet" href="~/css/Login.css">
+    <link rel="stylesheet" href="../webfonts/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../webfonts/fonts/iconic/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="../css/Login.css">
 </head>
 <body>
 
@@ -52,7 +51,7 @@
                     </div>
 
                     <div class="text-center p-t-90">
-                        <a class="txt1" href="~/Pages/Dashboard.cshtml">
+                        <a class="txt1" href="Dashboard.aspx">
                             Forgot Password?
                         </a>
                     </div>

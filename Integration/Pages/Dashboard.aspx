@@ -1,6 +1,5 @@
-﻿@{
-    Layout = null;
-}
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="Integration.Pages.Dashboard" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,10 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="shortcut icon" href="~/images/favicon.ico" />
-    <link rel="stylesheet" href="~/css/all.min.css">
+    <link rel="shortcut icon" href="../images/favicon.ico" />
+    <link rel="stylesheet" href="../css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="~/css/Dashboard.css">
+    <link rel="stylesheet" href="../css/Dashboard.css">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 </head>
 <body>
@@ -26,32 +25,33 @@
                 <li>
                     <a href="#" class="active1"><span class="las la-igloo icon-logo"></span><span>Dashboard</span></a>
                 </li>
-                <li class="menu"><b>INFORMATION</b></li>
-                <li>
-                    <a href="~/Pages/TotalEarning.cshtml"><span class="fas fa-coins"></span><span>Total Earning</span></a>
-                </li>
-                <li>
-                    <a href="~/Pages/VacationDays.cshtml"><span class="far fa-calendar-alt"></span><span>Vacation Days</span></a>
-                </li>
-                <li>
-                    <a href="~/Pages/BenefitsPaid.cshtml"><span class="fab fa-bitcoin"></span><span>Benefits Paid</span></a>
-                </li>
-                <li>
-                    <a href="~/Pages/NewEmployee.cshtml"><span class="fas fa-user-plus"></span><span>New Employee</span></a>
-                </li>
-                <li class="menu"><b>NOTIFICATION</b></li>
-                <li>
-                    <a href="~/Pages/HiringAnniversary.cshtml"><span class="fas fa-align-left"></span><span>Hiring Anniversary</span></a>
-                </li>
-                <li>
-                    <a href="~/Pages/AccumulatedVacation.cshtml"><span class="fas fa-route"></span><span>Accumulated Vacation</span></a>
-                </li>
-                <li>
-                    <a href="~/Pages/ChangeBenefitsPlan.cshtml"><span class="fas fa-trophy"></span><span>Change Benefits Plan</span></a>
-                </li>
-                <li style="border-bottom:.3rem solid black;">
-                    <a href="~/Pages/Birthday.cshtml"><span class="fas fa-birthday-cake"></span><span>Birthday</span></a>
-                </li>
+               
+                    <li class="menu"><b>INFORMATION</b></li>
+                    <li>
+                        <a href="TotalEarning.aspx"><span class="fas fa-coins"></span><span>Total Earning</span></a>
+                    </li>
+                    <li>
+                        <a href="VacationDays.aspx"><span class="far fa-calendar-alt"></span><span>Vacation Days</span></a>
+                    </li>
+                    <li>
+                        <a href="BenefitsPaid.aspx"><span class="fab fa-bitcoin"></span><span>Benefits Paid</span></a>
+                    </li>
+                    <li>
+                        <a href="NewEmployee.aspx"><span class="fas fa-user-plus"></span><span>New Employee</span></a>
+                    </li>
+                    <li class="menu"><b>NOTIFICATION</b></li>
+                    <li>
+                        <a href="HiringAnniversary.aspx"><span class="fas fa-align-left"></span><span>Hiring Anniversary</span></a>
+                    </li>
+                    <li>
+                        <a href="AccumulatedVacation.aspx"><span class="fas fa-route"></span><span>Accumulated Vacation</span></a>
+                    </li>
+                    <li>
+                        <a href="ChangeBenefitsPlan.aspx"><span class="fas fa-trophy"></span><span>Change Benefits Plan</span></a>
+                    </li>
+                    <li style="border-bottom:.3rem solid black;">
+                        <a href="Birthday.aspx"><span class="fas fa-birthday-cake"></span><span>Birthday</span></a>
+                    </li>
                 <!-- <li>
                     <a href="#"><span class="fab fa-bitcoin"></span><span>Payroll</span></a>
                 </li> -->
@@ -74,11 +74,11 @@
                         <ul class="subnav">
                             <li><a href="#"><i class="fas fa-user-circle  m-r-10"></i>Account</a></li>
                             <li><a href="#"><i class="fas fa-cogs m-r-10"></i>Setting</a></li>
-                            <li><a href="~/Pages/Index.cshtml"><i class="fas fa-sign-out-alt m-r-10"></i>Log Out</a></li>
+                            <li><a href="Index.aspx"><i class="fas fa-sign-out-alt m-r-10"></i>Log Out</a></li>
                         </ul>
                     </li>
                 </div>
-                <img src="~/images/face.jpg" width="40px" height="40px" alt="">
+                <img src="../images/face.jpg" width="40px" height="40px" alt="">
                 <div>
                     <h4>Tuan</h4>
                     <small>Super admin</small>
