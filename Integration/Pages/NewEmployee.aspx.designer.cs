@@ -49,6 +49,24 @@ namespace Integration.Pages {
         protected global::System.Web.UI.WebControls.TextBox EmployeeIDText;
         
         /// <summary>
+        /// Hire_dateSelect control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Hire_dateSelect;
+        
+        /// <summary>
+        /// Gender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList Gender;
+        
+        /// <summary>
         /// firstnameText control.
         /// </summary>
         /// <remarks>
@@ -94,13 +112,13 @@ namespace Integration.Pages {
         protected global::System.Web.UI.WebControls.TextBox BirthdaySelect;
         
         /// <summary>
-        /// Job_ID control.
+        /// Employment_ST control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Job_ID;
+        protected global::System.Web.UI.WebControls.TextBox Employment_ST;
         
         /// <summary>
         /// BenefitPlanID control.

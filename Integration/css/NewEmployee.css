@@ -364,3 +364,7 @@ select {
 .align-items-center {
 	align-items: center !important;
 }
+.inline { 
+    display: inline-block; 
+    margin: 225;
+    }

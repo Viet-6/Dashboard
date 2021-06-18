@@ -96,6 +96,10 @@
     <Content Include="css\site.css" />
     <Content Include="css\Table.css" />
     <Content Include="css\Table_day.css" />
+    <Content Include="data\HR.mdf" />
+    <Content Include="data\HR_log.ldf">
+      <DependentUpon>HR.mdf</DependentUpon>
+    </Content>
     <Content Include="data\SI+Payroll+DB.sql" />
     <Content Include="images\bg.jpg" />
     <Content Include="images\face.jpg" />
