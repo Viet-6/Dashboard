@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head id="Head1" runat="server">
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,9 +13,29 @@
     <link rel="stylesheet" href="../css/NewEmployee.css" />
     <link rel="stylesheet"
           href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" />
+    <script runat="server">
+       protected override void Render(HtmlTextWriter writer)
+        {
+            ClientScript.RegisterForEventValidation("ShareholderSelect", "Non-Shareholder");
+            ClientScript.RegisterForEventValidation("ShareholderSelect", "Shareholder");
+            //ClientScript.RegisterForEventValidation("department", "This is Option 3");
+            //ClientScript.RegisterForEventValidation("BenefitPlanID", "Is this option registered for event validation?");
+            base.Render(writer);
+        }
+    </script>
+    <script type="text/javascript">
+        function Initialize() {
+            var oOption = document.createElement("OPTION");
+            document.all("ShareholderSelect").options.add(oOption);
+            oOption.innerText = "Non-Shareholder";
+            oOption = document.createElement("OPTION");
+            document.all("ShareholderSelect").options.add(oOption);
+            oOption.innerText = "Shareholder";
+        }
+    </script>
 </head>
-<body>
-    <form runat="server">
+<body onload="Initialize();">
+    <form id="form1" runat="server">
     <input type="checkbox" name="" id="nav-toggle" />
     <div class="slidebar">
         <div class="slidebar-brand">
@@ -64,7 +84,8 @@
             </ul>
         </div>
     </div>
-    <div class="main-content">
+    <div>
+        <div class="main-content">
         <header>
             <h2>
                 <label for="nav-toggle">
@@ -96,7 +117,7 @@
                 </div>
             </div>
         </header>
-        <main>
+            <main>
             <div class="container-fluid">
                 <div class="row justify-content-center">
                     <div class="col-12 col-xl-10">
@@ -108,8 +129,7 @@
                                 <asp:Button class="btn btn-primary" ID="btn_add" runat="server" Text="Save Change" onclick="Add_Click"></asp:button>
                             </div>
                         </div>
-                        <form>
-                            <hr class="my-4" />
+                        <hr class="my-4" />
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="">Employee ID</label>
@@ -154,11 +174,11 @@
                                     <asp:TextBox ID="Job_ID" runat="server" class="form-control"></asp:TextBox>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="">Benefit plan ID</label>
-                                    <asp:TextBox ID="BenefitPlanID" runat="server" class="form-control"></asp:TextBox>
+                                    <label for="">Benefit plan</label>
+                                    <asp:DropDownList ID="BenefitPlanID" runat="server" class="form-control"></asp:DropDownList>
                                 </div>
                             </div>
-                            <div class="form-row">
+                        <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="">Employee Number</label>
                                     <asp:TextBox ID="EmployeeNum" runat="server" class="form-control"></asp:TextBox>
@@ -168,33 +188,28 @@
                                     <asp:TextBox ID="SSN" runat="server" class="form-control"></asp:TextBox>
                                 </div>
                             </div>
-
-                            <div class="form-row">
+                         <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="">ID Pay Rates</label>
                                     <asp:TextBox ID="IDPayRates" runat="server" class="form-control"></asp:TextBox>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="">Shareholder Status</label>
-                                    <select id="Shareholder" class="form-control">
-                                        <option value="female">...</option>
-                                        <option value="male">...</option>
-                                    </select>
+                                        <asp:DropDownList ID="ShareholderSelect" runat="server" class="form-control">
+                                        </asp:DropDownList>
                                 </div>
-                                <div class="form-group col-md-4">
+                             <div class="form-group col-md-4">
                                     <label for="">Department</label>
-                                    <select id="department" class="form-control">
-                                        <option value="female">...</option>
-                                        <option value="male">...</option>
-                                    </select>
+                                    <asp:DropDownList ID="department" runat="server" class="form-control">
+                                    
+                                    </asp:DropDownList>
                                 </div>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </main>
     </div>
-        </form>
+    </form>
 </body>
 </html>

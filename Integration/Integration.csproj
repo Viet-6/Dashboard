@@ -108,6 +108,7 @@
     <Content Include="Pages\HiringAnniversary.aspx" />
     <Content Include="Pages\Index.aspx" />
     <Content Include="Pages\NewEmployee.aspx" />
+    <Content Include="Pages\postbackoptions.aspx" />
     <Content Include="Pages\TotalEarning.aspx" />
     <Content Include="Pages\VacationDays.aspx" />
     <Content Include="Web.config" />
@@ -177,6 +178,13 @@
     </Compile>
     <Compile Include="Pages\NewEmployee.aspx.designer.cs">
       <DependentUpon>NewEmployee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\postbackoptions.aspx.cs">
+      <DependentUpon>postbackoptions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\postbackoptions.aspx.designer.cs">
+      <DependentUpon>postbackoptions.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\TotalEarning.aspx.cs">
       <DependentUpon>TotalEarning.aspx</DependentUpon>
