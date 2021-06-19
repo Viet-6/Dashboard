@@ -43,101 +43,124 @@ namespace Integration.Pages
             string insert_employment = "insert into Employment ([Employee_ID]," +
             " [Employment_Status], [Hire_Date], [Workers_Comp_Code], " +
             " [Termination_Date], [Rehire_Date], [Last_Review_Date]) VALUES " +
-            "(CAST(@Employee_ID_Empl AS Decimal(18, 0)), @Employ_Stat, @Hire_date, " +
-            "@Work_Comp, @Termination_date, @Rehire_date, @Last_review )";
+            "(CAST('" + EmployeeIDText.Text + "' AS Decimal(18, 0)), '" + Employment_ST.Text +
+            "', '" + Hire_dateSelect.Text + "', " +"null, null, null, null )";
             string insert_Personal = "INSERT INTO Personal (Employee_ID, "+
                 "First_Name, Last_Name, Middle_Initial, Address1, Address2, City, "+
                 "State, Zip, Email, Phone_Number, Social_Security_Number, " +
                 "Drivers_License, Marital_Status, Gender, Shareholder_Status, Benefit_Plans, " +
-                "Ethnicity, Date_of_birth) values (Cast(@Employee_ID AS Numeric(18,0)), " +
-                "@First_Name, @Last_Name, @Middle_Initial, @Address1, @Address2, @City, @State, @Zip, @Email, @Phone_Number, @Social_Security_Number, " +
-                 "@Drivers_License, @Marital_Status, @Gender, @Shareholder_Status, Cast(@Benefit_Plans AS Numeric(18,0)), " +
-                  "@Ethnicity, @Date_of_birth)";
-            string insert_Job = "insert into Job_History ([Employee_ID], [Department], [Division], [Start_Date], [End_Date], [Job_Title], [Supervisor], [Job_Category], [Location], [Departmen_Code], [Salary_Type], [Pay_Period], [Hours_per_Week], [Hazardous_Training]) values (Cast(@Employee_ID_JH AS Numeric(18,0)), @Department, @Division," +
-            " getdate(), Cast(@End_Date AS datetime), @Job_Title, Cast(@Supervisor AS Numeric(18)), @Job_Category, @Location, Cast(@Department_Code AS Numeric(18))," +
-            " Cast(@Salary_Type AS Numeric(18)), @Pay_Period, Cast(@Hours_per_Week AS Numeric(18)), @Hazardous )";
+                "Ethnicity, Date_of_birth) values (Cast('" + EmployeeIDText.Text + "' AS Numeric(18,0)), " +
+                "'" + firstnameText.Text + "', '" + lastnameText.Text + "', null, null, null, null, null, null, '"
+                + Email.Text+ "', '" + Phone_Number.Text + "', '" + SSN.Text + "', " +"null, null, '" + 
+                Gender.SelectedValue + "', '"+ShareholderSelect.SelectedValue+
+                "', Cast('"+BenefitPlanID.SelectedValue+"' AS Numeric(18,0)), " +"null, '" + BirthdaySelect.Text + "')";
+            string insert_Job = "insert into Job_History ([Employee_ID], [Department], [Division], [Start_Date], [End_Date], [Job_Title], [Supervisor], [Job_Category], [Location], [Departmen_Code], [Salary_Type], [Pay_Period], [Hours_per_Week], [Hazardous_Training]) "+
+                " values (Cast('" + EmployeeIDText.Text + "' AS Numeric(18,0)), '" + department.SelectedValue + "', null," +
+            " getdate(), Cast('2026-01-01' AS datetime), null, Cast(null AS Numeric(18)), null, null, Cast(null AS Numeric(18))," +
+            " Cast(null AS Numeric(18)), null, Cast('7' AS Numeric(18)), null )";
             string insert_payrates = "insert into `Pay rates` (`idPay Rates`, `Pay Rate Name`, `Value`, `Tax Percentage`, `Pay Type`, `Pay Amount`, `PT - Level C`)" +
                     " values (@idPay_Rates, @Pay_Rate_Name, Cast(@Value AS Decimal)," +
                     "Cast(@Tax_Percentage AS Decimal), @Pay_Type, Cast(@Pay_Amount AS Decimal), Cast(@PT_Level_C AS Decimal) )";
-            string insert_Employee = "insert into Employee values (@Employee_ID, @Employee_Number, @First_Name, @Last_Name, Cast(@SSN AS NUMERIC), @Pay_Rate," +
+            string insert_Employee = "insert into Employee values (@Employee_ID, @Employee_Number, @First_Name, @Last_Name, Cast(@SSN AS Decimal), @Pay_Rate," +
                " @Pay_Rate_ID, @Vacation_Days, Cast(@Paid_To_Date As Decimal), Cast(@Paid_Last_Year As Decimal))";
-            
-            SqlDataSource cmd = new SqlDataSource();
-            cmd.ConnectionString = connectstring;
-            cmd.InsertCommandType = SqlDataSourceCommandType.Text;
-            
-            Insert_Personal(cmd,insert_Personal);
-            Insert_Job_History(cmd,insert_Job);
-            Insert_Employment(cmd,insert_employment);
-            using (MySqlConnection connection = new MySqlConnection(constr))
+            SqlConnection SqlConn = new SqlConnection(connectstring);
+            SqlTransaction tran = null;
+            MySqlTransaction mytran = null;
+            try
             {
-                Insert_Pay_Rates(insert_payrates,connection);
-                Insert_Employee(insert_Employee,connection);
+                SqlConn.Open();
+                tran = SqlConn.BeginTransaction();
+                insertsql(insert_Personal+insert_Job+insert_employment, SqlConn, tran);
+                using (MySqlConnection connection = new MySqlConnection(constr))
+                {
+                    connection.Open();
+                    mytran = connection.BeginTransaction();
+                    Insert_Pay_Rates(insert_payrates, connection);
+                    Insert_Employee(insert_Employee, connection);
+                    mytran.Commit();
+                    connection.Close();
+                }
+                tran.Commit();
+                Clear();
             }
-            Clear();
+            catch(SqlException sqle)
+            {
+                if (sqle.Number == 2627)
+                {
+                    if (sqle.Message.Contains("Primary"))
+                    {
+                        string message = "Already have data in databases!";
+                        Alert(message);
+                    }
+                    else
+                    {
+                        string message = "Already have data in databases!";
+                        Alert(message);
+                    }
+                }
+                else
+                {
+                    throw;
+                    //string message = "Human Resource Connection Error!";
+                    //Alert(message);
+                }
+            }
+            catch (MySqlException ex)
+            {
+                    if (ex.Number == 2627)
+                    {
+                        if (ex.Message.Contains("Primary"))
+                        {
+                            string message = "Already have data in databases!";
+                            Alert(message);
+                        }
+                        else
+                        {
+                            string message = "Already have data in databases!";
+                            Alert(message);
+                        }
+                    }
+                    else
+                    {
+                        if (tran != null)
+                        { tran.Rollback(); }
+                        else if(mytran != null )
+                        {
+                            tran.Rollback();
+                            mytran.Rollback();
+                        }
+                        string message = "Pay Rates Connection Error!";
+                        Alert(message);
+                    }
+            }
+            finally
+            {
+                if (SqlConn.State == ConnectionState.Open)
+                    SqlConn.Close();
+            }
         }
 
-        private void Insert_Employment(SqlDataSource cmd, string insertsql)
-        {//SQL Server Insert to Employment table
-            cmd.InsertCommand = insertsql;
-            cmd.InsertParameters.Add("Employee_ID_Empl", EmployeeIDText.Text);
-            cmd.InsertParameters.Add("Employ_Stat", Employment_ST.Text);
-            cmd.InsertParameters.Add("Hire_date", Hire_dateSelect.Text);
-            cmd.InsertParameters.Add("Work_Comp", null);
-            cmd.InsertParameters.Add("Termination_date", null);
-            cmd.InsertParameters.Add("Rehire_date", null);
-            cmd.InsertParameters.Add("Last_review", null);
-            cmd.Insert();
+        private static void insertsql(string insert_Personal, SqlConnection SqlConn, SqlTransaction tran)
+        {
+            SqlCommand comm = new SqlCommand(insert_Personal, SqlConn, tran);
+            comm.ExecuteNonQuery();
         }
 
-        private void Insert_Job_History(SqlDataSource cmd, string insertsql)
-        {//SQL Server Insert to Job History table
-            cmd.InsertCommand = insertsql;
-            cmd.InsertParameters.Add("Employee_ID_JH", EmployeeIDText.Text);
-            cmd.InsertParameters.Add("Department", department.SelectedValue);
-            cmd.InsertParameters.Add("Division", null);
-            cmd.InsertParameters.Add("End_Date", "2026-01-01");
-            cmd.InsertParameters.Add("Job_Title", null);
-            cmd.InsertParameters.Add("Supervisor", null);
-            cmd.InsertParameters.Add("Job_Category", null);
-            cmd.InsertParameters.Add("Location", null);
-            cmd.InsertParameters.Add("Department_Code", null);
-            cmd.InsertParameters.Add("Salary_Type", null);
-            cmd.InsertParameters.Add("Pay_Period", null);
-            cmd.InsertParameters.Add("Hours_per_Week", "7");
-            cmd.InsertParameters.Add("Hazardous", null);
-            cmd.Insert();
-        }
-
-        private void Insert_Personal(SqlDataSource cmd, string insertsql)
-        {//SQL Server Insert to Personal table
-            cmd.InsertCommand = insertsql;
-            cmd.InsertParameters.Add("Employee_ID", EmployeeIDText.Text);
-            cmd.InsertParameters.Add("First_Name", firstnameText.Text);
-            cmd.InsertParameters.Add("Last_Name", lastnameText.Text);
-            cmd.InsertParameters.Add("Middle_Initial", null);
-            cmd.InsertParameters.Add("Address1", null);
-            cmd.InsertParameters.Add("Address2", null);
-            cmd.InsertParameters.Add("City", null);
-            cmd.InsertParameters.Add("State", null);
-            cmd.InsertParameters.Add("Zip", null);
-            cmd.InsertParameters.Add("Email", Email.Text);
-            cmd.InsertParameters.Add("Phone_Number", Phone_Number.Text);
-            cmd.InsertParameters.Add("Social_Security_Number", SSN.Text);
-            cmd.InsertParameters.Add("Drivers_License", null);
-            cmd.InsertParameters.Add("Marital_Status", null);
-            cmd.InsertParameters.Add("Gender", Gender.SelectedValue);
-            cmd.InsertParameters.Add("Shareholder_Status", ShareholderSelect.SelectedValue);
-            cmd.InsertParameters.Add("Benefit_Plans", BenefitPlanID.SelectedValue);
-            cmd.InsertParameters.Add("Ethnicity", null);
-            cmd.InsertParameters.Add("Date_of_birth", BirthdaySelect.Text);
-            cmd.Insert();
+        private void Alert(string message)
+        {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.Append("<script type = 'text/javascript'>");
+            sb.Append("window.onload=function(){");
+            sb.Append("alert('");
+            sb.Append(message);
+            sb.Append("')};");
+            sb.Append("</script>");
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", sb.ToString());
         }
 
         private void Insert_Employee(string query, MySqlConnection connection)
         {
             //MySQL Employee Table
-                connection.Open();
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@Employee_ID", EmployeeIDText.Text);
                 command.Parameters.AddWithValue("@Employee_Number", EmployeeNum.Text);
@@ -150,14 +173,11 @@ namespace Integration.Pages
                 command.Parameters.AddWithValue("@Paid_To_Date", "1");
                 command.Parameters.AddWithValue("@Paid_Last_Year", "1");
                 command.ExecuteNonQuery();
-                command.Dispose();
-                connection.Close();
         }
 
         private void Insert_Pay_Rates(string query, MySqlConnection connection)
         {
             //MySQL Pay Rates Table
-                connection.Open();
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@idPay_Rates", IDPayRates.Text);
                 command.Parameters.AddWithValue("@Pay_Rate_Name", "VND");
@@ -167,8 +187,6 @@ namespace Integration.Pages
                 command.Parameters.AddWithValue("@Pay_Amount", "10000");
                 command.Parameters.AddWithValue("@PT_Level_C", "1");
                 command.ExecuteNonQuery();
-                command.Dispose();
-                connection.Close();
         }
 
         private void Clear()
@@ -183,6 +201,7 @@ namespace Integration.Pages
             BirthdaySelect.Text = "";
             Employment_ST.Text = "";
             Hire_dateSelect.Text = "";
+            EmployeeNum.Text = "";
             Gender.ClearSelection();
         }
     }

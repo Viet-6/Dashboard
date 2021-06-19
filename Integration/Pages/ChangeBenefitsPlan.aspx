@@ -86,11 +86,11 @@
             </div>
         </header>
         <main>
-            <form action="#">
-                Search <b>emp_ID</b> or <b>Last name</b>:
-                <input type="search" class="choose" name="keyword">
-                <input type="submit" class="find" value="Find">
-            </form>
+  
+                Search <b>emp_ID</b> or <b>First name</b>:
+                <asp:TextBox ID="Searchtext" runat="server" type="search" class="choose"></asp:TextBox>
+            <asp:Button ID="Find" runat="server" Text="FIND" type="submit" class="find" OnClick="Find_Click"></asp:Button>
+
             <div class="recent-grid">
                 <div class="projects">
                     <div class="card">

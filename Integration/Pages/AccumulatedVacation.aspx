@@ -86,33 +86,24 @@
                 </div>
             </header>
             <main>
-                <form action="">
-                    Search:
-                    <b>Year</b>
-                    <select name="Year" class="choose" id="">
-                        <option value="Year">2025</option>
-                        <option value="Year">2024</option>
-                        <option value="Year">2023</option>
-                        <option value="Year">2022</option>
-                        <option value="Year">2021</option>
-                        <option value="Year">2020</option>
-                        <option value="Year">2019</option>
-                        <option value="Year">2018</option>
-                        <option value="Year">2017</option>
-                        <option value="Year">2016</option>
-                    </select>
-                    <input type="submit" class="find" value="FIND">
-                </form>
+               
+                     Search <b>emp_ID</b> or <b>First name</b>:
+                        <asp:TextBox ID="Searchtext" runat="server" type="search" class="choose" ></asp:TextBox>
+                        <asp:Button ID="Find" runat="server" Text="FIND" type="submit" class="find" OnClick="Find_Click"></asp:Button>
+
                 <div class="recent-grid">
                     <div class="projects">
                         <div class="card">
                             <div class="card-header">
                                 <h2>Employee List</h2>
-                                <button>Next<span class="fa fa-arrow-right "></span></button>
+                                <div>
+                                    <asp:Button ID="Previous" runat="server" class="find" Text="Previous" OnClick="Previous_Click" Enabled ="false"></asp:Button>
+                                    <asp:Button ID="Next" runat="server" class="find" Text="Next" OnClick="Next_Click"></asp:Button>
+                                    </div>
                             </div>
                             <div class="card-body">
                                 <table width="100%">
-                                    <asp:GridView ID="GridView1" runat="server" width="100%"></asp:GridView>
+                                    <asp:GridView ID="GridView1" runat="server" width="100%" AllowPaging="True" OnPageIndexChanging="GridView1_PageIndexChanging" PageSize="2"></asp:GridView>
                                 </table>
                             </div>
                         </div>

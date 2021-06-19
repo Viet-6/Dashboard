@@ -29,5 +29,21 @@ namespace Integration.Pages
             GridView1.DataSource = DT;
             GridView1.DataBind();
         }
+
+        protected void Find_Click(object sender, EventArgs e)
+        {
+            //SQL server
+            SqlConnection SqlConn = new SqlConnection(connectstring);
+            SqlConn.Open();
+            sql = "SELECT Personal.Employee_ID AS 'Employee ID', First_Name AS 'First Name'," +
+                " Last_Name As 'Last Name', Department, CONVERT(char(10),Date_of_birth,101) AS 'Date of Birth' FROM Personal, Job_History " +
+                "where Personal.Employee_ID = Job_History.Employee_ID and Month(Date_of_birth) = '"+birthday.SelectedValue+"' ";
+            SqlDataAdapter SqlAdapter = new SqlDataAdapter(sql, SqlConn);
+            DataTable DT = new DataTable();
+            SqlAdapter.Fill(DT);
+            SqlConn.Close();
+            GridView1.DataSource = DT;
+            GridView1.DataBind();
+        }
     }
 }

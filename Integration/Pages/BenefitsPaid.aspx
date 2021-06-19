@@ -86,11 +86,9 @@
             </div>
         </header>
         <main>
-            <form action="#">
                 Search Shareholder:
-                <input type="search" class="choose" name="keyword">
-                <input type="submit" class="find" value="Find">
-            </form>
+            <asp:TextBox ID="Searchtext" runat="server" type="search" class="choose"></asp:TextBox>
+            <asp:Button ID="Find" runat="server" Text="FIND" type="submit" class="find" OnClick="Find_Click"></asp:Button>
             <div class="recent-grid">
                 <div class="projects">
                     <div class="card">
@@ -100,7 +98,7 @@
                         </div>
                         <div class="card-body">
                             <table width="100%">
-                                <asp:GridView ID="GridView1" runat="server" width="100%"></asp:GridView>
+                                <asp:GridView ID="GridView1" runat="server" width="100%" AllowPaging="True" PageSize="1" OnSelectedIndexChanging="GridView1_SelectedIndexChanging"></asp:GridView>
                             </table>
                         </div>
                     </div>

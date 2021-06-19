@@ -86,25 +86,23 @@
             </div>
         </header>
         <main>
-            <form action="">
                 Search Birthday:
                 <b>Month</b>
-                <select name="Month" class="choose" id="">
-                    <option value="Month">1</option>
-                    <option value="Month">2</option>
-                    <option value="Month">3</option>
-                    <option value="Month">4</option>
-                    <option value="Month">5</option>
-                    <option value="Month">6</option>
-                    <option value="Month">7</option>
-                    <option value="Month">8</option>
-                    <option value="Month">9</option>
-                    <option value="Month">10</option>
-                    <option value="Month">11</option>
-                    <option value="Month">12</option>
-                </select>
-                <input type="submit" class="find" value="FIND">
-            </form>
+                <asp:DropDownList ID="birthday" runat="server" class="choose">
+                                            <asp:ListItem Text="1" Value ="1"></asp:ListItem>
+                                            <asp:ListItem Text="2" Value ="2"></asp:ListItem>
+                                            <asp:ListItem Text="3" Value ="3"></asp:ListItem>
+                                             <asp:ListItem Text="4" Value ="4"></asp:ListItem>
+                                            <asp:ListItem Text="5" Value ="5"></asp:ListItem>
+                                            <asp:ListItem Text="6" Value ="6"></asp:ListItem>
+                                           <asp:ListItem Text="7" Value ="7"></asp:ListItem>
+                                            <asp:ListItem Text="8" Value ="8"></asp:ListItem>
+                                            <asp:ListItem Text="9" Value ="9"></asp:ListItem>
+                                         <asp:ListItem Text="10" Value ="10"></asp:ListItem>
+                                            <asp:ListItem Text="11" Value ="11"></asp:ListItem>
+                                            <asp:ListItem Text="12" Value ="12"></asp:ListItem>
+                                    </asp:DropDownList>
+                <asp:Button ID="Find" runat="server" Text="FIND" type="submit" class="find" OnClick="Find_Click"></asp:Button>
             <div class="recent-grid">
                 <div class="projects">
                     <div class="card">

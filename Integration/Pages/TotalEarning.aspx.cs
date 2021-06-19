@@ -91,5 +91,43 @@ namespace Integration.Pages
                 GridView1.DataBind();
             }
         }
+
+        protected void Find_Click(object sender, EventArgs e)
+        {
+            //SQL server
+            SqlConnection SqlConn = new SqlConnection(connectstring);
+            SqlConn.Open();
+            sql = "SELECT CAST(Personal.Employee_ID AS integer) AS 'Employee ID', First_Name AS 'Name', Shareholder_Status As 'Shareholder', " +
+                " Gender, Ethnicity, Employment_Status AS 'Employment', Department " +
+                "FROM Personal, Employment, Job_History where Personal.Employee_ID = Job_History.Employee_ID And Personal.Employee_ID = Employment.Employee_ID And (Personal.First_Name like '" + Searchtext.Text + "%' OR Personal.Employee_ID like '" + Searchtext.Text + "%')";
+            SqlDataAdapter SqlAdapter = new SqlDataAdapter(sql, SqlConn);
+            DataTable DT = new DataTable();
+            DT.PrimaryKey = new DataColumn[] { DT.Columns["Employee ID"] };
+            SqlAdapter.Fill(DT);
+            DT.Columns.Add("Paid To Date", typeof(decimal));
+            DT.Columns.Add("Paid Last Year", typeof(decimal));
+            SqlConn.Close();
+            List<string> hrID = new List<string>();
+            AddID(DT, hrID);
+
+            //MySQL
+            MySqlConnection con = new MySqlConnection(constr);
+            DataTable ds = new DataTable();
+            con.Open();
+            ds.PrimaryKey = new DataColumn[] { ds.Columns["Employee ID"] };
+            foreach (var item in hrID)
+            {
+                query = "select idEmployee AS 'Employee ID',`Paid To Date`, `Paid Last Year` from Employee " +
+                    "where Employee.idEmployee = '" + item + "' AND `Paid To Date` IS NOT NULL AND `Paid Last Year` IS NOT NULL";
+                MySqlDataAdapter sda = new MySqlDataAdapter(query, constr);
+                sda.Fill(ds);
+            }
+            con.Close();
+            List<string> prID = new List<string>();
+            AddID(ds, prID);
+            TEDataSeparateHandle(DT, ds, hrID, prID);
+            GridView1.DataSource = DT;
+            GridView1.DataBind();
+        }
     }
 }

@@ -13,6 +13,33 @@ namespace Integration.Pages {
     public partial class HiringAnniversary {
         
         /// <summary>
+        /// year control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList year;
+        
+        /// <summary>
+        /// month control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList month;
+        
+        /// <summary>
+        /// Find control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Find;
+        
+        /// <summary>
         /// GridView1 control.
         /// </summary>
         /// <remarks>

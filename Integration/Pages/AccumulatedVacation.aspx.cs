@@ -65,7 +65,6 @@ namespace Integration.Pages
                 List<string> hrID = new List<string>();
                 AddID(DT, hrID);
 
-
                 //MySQL
                 MySqlConnection con = new MySqlConnection(constr);
                 DataTable ds = new DataTable();
@@ -84,6 +83,187 @@ namespace Integration.Pages
                 AVDataSeparateHandle(DT,ds,hrID,prID);
                 GridView1.DataSource = DT;
                 GridView1.DataBind();
+            }
+        }
+
+        protected void Find_Click(object sender, EventArgs e)
+        {
+                //SQL server
+                SqlConnection SqlConn = new SqlConnection(connectstring);
+                SqlConn.Open();
+                sql = "SELECT CAST(Personal.Employee_ID AS integer) AS 'Employee ID', First_Name AS 'First Name', Last_Name As 'Last Name', " +
+                    "Department FROM Personal, Job_History where Personal.Employee_ID = Job_History.Employee_ID and  (Personal.First_Name like '" + Searchtext.Text + "%' OR Personal.Employee_ID like '"+Searchtext.Text+"%') ";
+                SqlDataAdapter SqlAdapter = new SqlDataAdapter(sql, SqlConn);
+                DataTable DT = new DataTable();
+                DT.PrimaryKey = new DataColumn[] { DT.Columns["Employee ID"] };
+                SqlAdapter.Fill(DT);
+                DT.Columns.Add("Vacation Days", typeof(int));
+                SqlConn.Close();
+                List<string> hrID = new List<string>();
+                AddID(DT, hrID);
+
+                //MySQL
+                MySqlConnection con = new MySqlConnection(constr);
+                DataTable ds = new DataTable();
+                con.Open();
+                ds.PrimaryKey = new DataColumn[] { ds.Columns["Employee ID"] };
+                foreach (var item in hrID)
+                {
+                    query = "select idEmployee AS 'Employee ID',`Vacation Days` from Employee " +
+                        "where Employee.idEmployee = '" + item + "' AND `Vacation Days` IS NOT NULL";
+                    MySqlDataAdapter sda = new MySqlDataAdapter(query, constr);
+                    sda.Fill(ds);
+                }
+                con.Close();
+                List<string> prID = new List<string>();
+                AddID(ds, prID);
+                AVDataSeparateHandle(DT, ds, hrID, prID);
+                GridView1.DataSource = DT;
+                GridView1.DataBind();
+                
+        }
+
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridView1.PageIndex = e.NewPageIndex;
+            if (GridView1.PageIndex == 0 || GridView1.PageIndex == GridView1.PageCount - 1)
+            {
+                if (GridView1.PageIndex == GridView1.PageCount - 1)
+                {
+                    Next.Enabled = false;
+                    Previous.Enabled = true;
+                }
+                else
+                {
+                    Previous.Enabled = false;
+                    Next.Enabled = true;
+                }
+            }
+            else if(!Next.Enabled||!Previous.Enabled)
+            {
+                Next.Enabled = Previous.Enabled = true;
+            }
+            //SQL server
+            SqlConnection SqlConn = new SqlConnection(connectstring);
+            SqlConn.Open();
+            sql = "SELECT CAST(Personal.Employee_ID AS integer) AS 'Employee ID', First_Name AS 'First Name', Last_Name As 'Last Name', " +
+                "Department FROM Personal, Job_History where Personal.Employee_ID = Job_History.Employee_ID";
+            SqlDataAdapter SqlAdapter = new SqlDataAdapter(sql, SqlConn);
+            DataTable DT = new DataTable();
+            DT.PrimaryKey = new DataColumn[] { DT.Columns["Employee ID"] };
+            SqlAdapter.Fill(DT);
+            DT.Columns.Add("Vacation Days", typeof(int));
+            SqlConn.Close();
+            List<string> hrID = new List<string>();
+            AddID(DT, hrID);
+
+            //MySQL
+            MySqlConnection con = new MySqlConnection(constr);
+            DataTable ds = new DataTable();
+            con.Open();
+            ds.PrimaryKey = new DataColumn[] { ds.Columns["Employee ID"] };
+            foreach (var item in hrID)
+            {
+                query = "select idEmployee AS 'Employee ID',`Vacation Days` from Employee " +
+                    "where Employee.idEmployee = '" + item + "' AND `Vacation Days` IS NOT NULL";
+                MySqlDataAdapter sda = new MySqlDataAdapter(query, constr);
+                sda.Fill(ds);
+            }
+            con.Close();
+            List<string> prID = new List<string>();
+            AddID(ds, prID);
+            AVDataSeparateHandle(DT, ds, hrID, prID);
+            GridView1.DataSource = DT;
+            GridView1.DataBind();
+        }
+
+        protected void Previous_Click(object sender, EventArgs e)
+        {
+            if (GridView1.PageIndex == GridView1.PageCount-1)
+            {
+                Next.Enabled = true;
+            }
+            --GridView1.PageIndex;
+            //SQL server
+            SqlConnection SqlConn = new SqlConnection(connectstring);
+            SqlConn.Open();
+            sql = "SELECT CAST(Personal.Employee_ID AS integer) AS 'Employee ID', First_Name AS 'First Name', Last_Name As 'Last Name', " +
+                "Department FROM Personal, Job_History where Personal.Employee_ID = Job_History.Employee_ID";
+            SqlDataAdapter SqlAdapter = new SqlDataAdapter(sql, SqlConn);
+            DataTable DT = new DataTable();
+            DT.PrimaryKey = new DataColumn[] { DT.Columns["Employee ID"] };
+            SqlAdapter.Fill(DT);
+            DT.Columns.Add("Vacation Days", typeof(int));
+            SqlConn.Close();
+            List<string> hrID = new List<string>();
+            AddID(DT, hrID);
+
+            //MySQL
+            MySqlConnection con = new MySqlConnection(constr);
+            DataTable ds = new DataTable();
+            con.Open();
+            ds.PrimaryKey = new DataColumn[] { ds.Columns["Employee ID"] };
+            foreach (var item in hrID)
+            {
+                query = "select idEmployee AS 'Employee ID',`Vacation Days` from Employee " +
+                    "where Employee.idEmployee = '" + item + "' AND `Vacation Days` IS NOT NULL";
+                MySqlDataAdapter sda = new MySqlDataAdapter(query, constr);
+                sda.Fill(ds);
+            }
+            con.Close();
+            List<string> prID = new List<string>();
+            AddID(ds, prID);
+            AVDataSeparateHandle(DT, ds, hrID, prID);
+            GridView1.DataSource = DT;
+            GridView1.DataBind();
+            if(GridView1.PageIndex <= 0)
+            {
+                Previous.Enabled = false;
+            }
+        }
+
+        protected void Next_Click(object sender, EventArgs e)
+        {
+            if (GridView1.PageIndex == 0)
+            {
+                Previous.Enabled = true;
+            }
+            ++GridView1.PageIndex;
+            //SQL server
+            SqlConnection SqlConn = new SqlConnection(connectstring);
+            SqlConn.Open();
+            sql = "SELECT CAST(Personal.Employee_ID AS integer) AS 'Employee ID', First_Name AS 'First Name', Last_Name As 'Last Name', " +
+                "Department FROM Personal, Job_History where Personal.Employee_ID = Job_History.Employee_ID";
+            SqlDataAdapter SqlAdapter = new SqlDataAdapter(sql, SqlConn);
+            DataTable DT = new DataTable();
+            DT.PrimaryKey = new DataColumn[] { DT.Columns["Employee ID"] };
+            SqlAdapter.Fill(DT);
+            DT.Columns.Add("Vacation Days", typeof(int));
+            SqlConn.Close();
+            List<string> hrID = new List<string>();
+            AddID(DT, hrID);
+
+            //MySQL
+            MySqlConnection con = new MySqlConnection(constr);
+            DataTable ds = new DataTable();
+            con.Open();
+            ds.PrimaryKey = new DataColumn[] { ds.Columns["Employee ID"] };
+            foreach (var item in hrID)
+            {
+                query = "select idEmployee AS 'Employee ID',`Vacation Days` from Employee " +
+                    "where Employee.idEmployee = '" + item + "' AND `Vacation Days` IS NOT NULL";
+                MySqlDataAdapter sda = new MySqlDataAdapter(query, constr);
+                sda.Fill(ds);
+            }
+            con.Close();
+            List<string> prID = new List<string>();
+            AddID(ds, prID);
+            AVDataSeparateHandle(DT, ds, hrID, prID);
+            GridView1.DataSource = DT;
+            GridView1.DataBind();
+            if(GridView1.PageIndex == GridView1.PageCount-1)
+            {
+                Next.Enabled = false;
             }
         }
     }

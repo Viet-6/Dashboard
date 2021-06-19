@@ -86,38 +86,36 @@
             </div>
         </header>
         <main>
-            <form action="">
                 Search:
                 <b>Year</b>
-                <select name="Year" class="choose" id="">
-                    <option value="Year">2025</option>
-                    <option value="Year">2024</option>
-                    <option value="Year">2023</option>
-                    <option value="Year">2022</option>
-                    <option value="Year">2021</option>
-                    <option value="Year">2020</option>
-                    <option value="Year">2019</option>
-                    <option value="Year">2018</option>
-                    <option value="Year">2017</option>
-                    <option value="Year">2016</option>
-                </select>
+                <asp:DropDownList ID="year" runat="server" class="choose">
+                                            <asp:ListItem Text="2025" Value ="2025"></asp:ListItem>
+                                            <asp:ListItem Text="2024" Value ="2024"></asp:ListItem>
+                                            <asp:ListItem Text="2023" Value ="2023"></asp:ListItem>
+                                             <asp:ListItem Text="2022" Value ="2022"></asp:ListItem>
+                                            <asp:ListItem Text="2021" Value ="2021"></asp:ListItem>
+                                            <asp:ListItem Text="2020" Value ="2020"></asp:ListItem>
+                                           <asp:ListItem Text="2019" Value ="2019"></asp:ListItem>
+                                            <asp:ListItem Text="2018" Value ="2018"></asp:ListItem>
+                                            <asp:ListItem Text="2017" Value ="2017"></asp:ListItem>
+                                    </asp:DropDownList>
                 <b>Month</b>
-                <select name="Month" class="choose" id="">
-                    <option value="Month">1</option>
-                    <option value="Month">2</option>
-                    <option value="Month">3</option>
-                    <option value="Month">4</option>
-                    <option value="Month">5</option>
-                    <option value="Month">6</option>
-                    <option value="Month">7</option>
-                    <option value="Month">8</option>
-                    <option value="Month">9</option>
-                    <option value="Month">10</option>
-                    <option value="Month">11</option>
-                    <option value="Month">12</option>
-                </select>
-                <input type="submit" class="find" value="FIND">
-            </form>
+                <asp:DropDownList ID="month" runat="server" class="choose">
+                                            <asp:ListItem Text="1" Value ="1"></asp:ListItem>
+                                            <asp:ListItem Text="2" Value ="2"></asp:ListItem>
+                                            <asp:ListItem Text="3" Value ="3"></asp:ListItem>
+                                             <asp:ListItem Text="4" Value ="4"></asp:ListItem>
+                                            <asp:ListItem Text="5" Value ="5"></asp:ListItem>
+                                            <asp:ListItem Text="6" Value ="6"></asp:ListItem>
+                                           <asp:ListItem Text="7" Value ="7"></asp:ListItem>
+                                            <asp:ListItem Text="8" Value ="8"></asp:ListItem>
+                                            <asp:ListItem Text="9" Value ="9"></asp:ListItem>
+                                         <asp:ListItem Text="10" Value ="10"></asp:ListItem>
+                                            <asp:ListItem Text="11" Value ="11"></asp:ListItem>
+                                            <asp:ListItem Text="12" Value ="12"></asp:ListItem>
+                                    </asp:DropDownList>
+                <asp:Button ID="Find" runat="server" Text="FIND" type="submit" class="find" OnClick="Find_Click"></asp:Button>
+
 
             <div class="recent-grid">
                 <div class="projects">

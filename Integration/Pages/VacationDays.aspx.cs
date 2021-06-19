@@ -89,5 +89,42 @@ namespace Integration.Pages
                 GridView1.DataBind();
             }
         }
+
+        protected void Find_Click(object sender, EventArgs e)
+        {
+            //SQL server
+            SqlConnection SqlConn = new SqlConnection(connectstring);
+            SqlConn.Open();
+            sql = "SELECT CAST(Personal.Employee_ID AS integer) AS 'Employee ID', First_Name AS 'Name', Shareholder_Status As 'Shareholder', " +
+                " Gender, Ethnicity, Employment_Status AS 'Employment' " +
+                "FROM Personal, Employment where Personal.Employee_ID = Employment.Employee_ID and (Personal.First_Name like '" + Searchtext.Text + "%' OR Personal.Employee_ID like '" + Searchtext.Text + "%')";
+            SqlDataAdapter SqlAdapter = new SqlDataAdapter(sql, SqlConn);
+            DataTable DT = new DataTable();
+            DT.PrimaryKey = new DataColumn[] { DT.Columns["Employee ID"] };
+            SqlAdapter.Fill(DT);
+            DT.Columns.Add("Vacation Days", typeof(int));
+            SqlConn.Close();
+            List<string> hrID = new List<string>();
+            AddID(DT, hrID);
+
+            //MySQL
+            MySqlConnection con = new MySqlConnection(constr);
+            DataTable ds = new DataTable();
+            con.Open();
+            ds.PrimaryKey = new DataColumn[] { ds.Columns["Employee ID"] };
+            foreach (var item in hrID)
+            {
+                query = "select idEmployee AS 'Employee ID',`Vacation Days` from Employee " +
+                    "where Employee.idEmployee = '" + item + "' AND `Vacation Days` IS NOT NULL";
+                MySqlDataAdapter sda = new MySqlDataAdapter(query, constr);
+                sda.Fill(ds);
+            }
+            con.Close();
+            List<string> prID = new List<string>();
+            AddID(ds, prID);
+            VDDataSeparateHandle(DT, ds, hrID, prID);
+            GridView1.DataSource = DT;
+            GridView1.DataBind();
+        }
     }
 }
