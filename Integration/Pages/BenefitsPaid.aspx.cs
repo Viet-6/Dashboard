@@ -78,8 +78,8 @@ namespace Integration.Pages
             ds.PrimaryKey = new DataColumn[] { ds.Columns["Employee ID"] };
             foreach (var item in hrID)
             {
-               string query = "select idEmployee AS 'Employee ID',`Paid To Date` from Employee " +
-                    "where Employee.idEmployee = '" + item + "' AND `Paid To Date` IS NOT NULL";
+                string query = "select idEmployee AS 'Employee ID',`Paid To Date` from Employee " +
+                     "where Employee.idEmployee = '" + item + "' AND `Paid To Date` IS NOT NULL";
                 MySqlDataAdapter sda = new MySqlDataAdapter(query, constr);
                 sda.Fill(ds);
             }
@@ -89,6 +89,7 @@ namespace Integration.Pages
             BPDataSeparateHandle(DT, ds, hrID, prID);
             GridView1.DataSource = DT;
             GridView1.DataBind();
+            EnablePagingButton();
         }
 
         protected void Find_Click(object sender, EventArgs e)
@@ -129,30 +130,14 @@ namespace Integration.Pages
 
         protected void Previous_Click(object sender, EventArgs e)
         {
-            if (GridView1.PageIndex == GridView1.PageCount - 1)
-            {
-                Next.Enabled = true;
-            }
             --GridView1.PageIndex;
             SelectQuery();
-            if (GridView1.PageIndex <= 0)
-            {
-                Previous.Enabled = false;
-            }
         }
 
         protected void Next_Click(object sender, EventArgs e)
         {
-            if (GridView1.PageIndex == 0)
-            {
-                Previous.Enabled = true;
-            }
             ++GridView1.PageIndex;
             SelectQuery();
-            if (GridView1.PageIndex == GridView1.PageCount - 1)
-            {
-                Next.Enabled = false;
-            }
         }
     }
 }

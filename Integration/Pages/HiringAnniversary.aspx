@@ -89,6 +89,7 @@
                 Search:
                 <b>Year</b>
                 <asp:DropDownList ID="year" runat="server" class="choose">
+                                            <asp:ListItem Text="--Select--" Value ="0"></asp:ListItem>
                                             <asp:ListItem Text="2025" Value ="2025"></asp:ListItem>
                                             <asp:ListItem Text="2024" Value ="2024"></asp:ListItem>
                                             <asp:ListItem Text="2023" Value ="2023"></asp:ListItem>
@@ -101,6 +102,7 @@
                                     </asp:DropDownList>
                 <b>Month</b>
                 <asp:DropDownList ID="month" runat="server" class="choose">
+                                            <asp:ListItem Text="--Select--" Value ="0"></asp:ListItem>
                                             <asp:ListItem Text="1" Value ="1"></asp:ListItem>
                                             <asp:ListItem Text="2" Value ="2"></asp:ListItem>
                                             <asp:ListItem Text="3" Value ="3"></asp:ListItem>
@@ -115,18 +117,21 @@
                                             <asp:ListItem Text="12" Value ="12"></asp:ListItem>
                                     </asp:DropDownList>
                 <asp:Button ID="Find" runat="server" Text="FIND" type="submit" class="find" OnClick="Find_Click"></asp:Button>
-
+            <asp:TextBox ID="CheckFindx" runat="server" Visible ="false"></asp:TextBox>
 
             <div class="recent-grid">
                 <div class="projects">
                     <div class="card">
                         <div class="card-header">
                             <h2>Employee List</h2>
-                            <button>Next<span class="fa fa-arrow-right "></span></button>
+                            <div>
+                                <asp:Button ID="Previous" runat="server" class="find" Text="Previous" OnClick="Previous_Click" Enabled ="false"></asp:Button>
+                                    <asp:Button ID="Next" runat="server" class="find" Text="Next" OnClick="Next_Click"></asp:Button>
+                            </div>
                         </div>
                         <div class="card-body">
                             <table width="100%">
-                                <asp:GridView ID="GridView1" runat="server" width="100%"></asp:GridView>
+                                <asp:GridView ID="GridView1" runat="server" width="100%" AllowPaging="True" PageSize="12" OnPageIndexChanging="GridView1_PageIndexChanging"></asp:GridView>
                             </table>
                         </div>
                     </div>

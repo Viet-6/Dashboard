@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -13,11 +14,9 @@ namespace Integration.Pages
     public partial class TotalEarning : System.Web.UI.Page
     {
         //Sql Server Connection string
-        string connectstring = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=HR;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        string connectstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         //MySQL Connection string
-        string constr = "Data Source=localhost;port=3306;Initial Catalog=mydb;User Id=root;password=root";
-        string sql;
-        string query;
+        string constr = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
         private void AddID(DataTable t, List<string> id)
         {
             for (int i = 0; i < t.Rows.Count; i++)
@@ -47,7 +46,7 @@ namespace Integration.Pages
                     first_table.Rows[i]["Paid To Date"] = second_table.Rows[i]["Paid To Date"].ToString();
                     first_table.Rows[i]["Paid Last Year"] = second_table.Rows[i]["Paid Last Year"].ToString();
                 }
-                    
+
             }
             first_table.AcceptChanges();
         }
@@ -55,50 +54,22 @@ namespace Integration.Pages
         {
             if (!this.IsPostBack)
             {
-                //SQL server
-                SqlConnection SqlConn = new SqlConnection(connectstring);
-                SqlConn.Open();
-                sql = "SELECT CAST(Personal.Employee_ID AS integer) AS 'Employee ID', First_Name AS 'Name', Shareholder_Status As 'Shareholder', " +
-                    " Gender, Ethnicity, Employment_Status AS 'Employment', Department " +
-                    "FROM Personal, Employment, Job_History where Personal.Employee_ID = Job_History.Employee_ID And Personal.Employee_ID = Employment.Employee_ID";
-                SqlDataAdapter SqlAdapter = new SqlDataAdapter(sql, SqlConn);
-                DataTable DT = new DataTable();
-                DT.PrimaryKey = new DataColumn[] { DT.Columns["Employee ID"] };
-                SqlAdapter.Fill(DT);
-                DT.Columns.Add("Paid To Date", typeof(decimal));
-                DT.Columns.Add("Paid Last Year", typeof(decimal));
-                SqlConn.Close();
-                List<string> hrID = new List<string>();
-                AddID(DT, hrID);
-
-                //MySQL
-                MySqlConnection con = new MySqlConnection(constr);
-                DataTable ds = new DataTable();
-                con.Open();
-                ds.PrimaryKey = new DataColumn[] { ds.Columns["Employee ID"] };
-                foreach (var item in hrID)
-                {
-                    query = "select idEmployee AS 'Employee ID',`Paid To Date`, `Paid Last Year` from Employee " +
-                        "where Employee.idEmployee = '" + item + "' AND `Paid To Date` IS NOT NULL AND `Paid Last Year` IS NOT NULL";
-                    MySqlDataAdapter sda = new MySqlDataAdapter(query, constr);
-                    sda.Fill(ds);
-                }
-                con.Close();
-                List<string> prID = new List<string>();
-                AddID(ds, prID);
-                TEDataSeparateHandle(DT, ds, hrID, prID);
-                GridView1.DataSource = DT;
-                GridView1.DataBind();
+                SelectQuery();
             }
         }
 
         protected void Find_Click(object sender, EventArgs e)
         {
+            SelectQuery();
+        }
+
+        private void SelectQuery()
+        {
             //SQL server
             SqlConnection SqlConn = new SqlConnection(connectstring);
             SqlConn.Open();
-            sql = "SELECT CAST(Personal.Employee_ID AS integer) AS 'Employee ID', First_Name AS 'Name', Shareholder_Status As 'Shareholder', " +
-                " Gender, Ethnicity, Employment_Status AS 'Employment', Department " +
+            string sql = "SELECT CAST(Personal.Employee_ID AS integer) AS 'Employee ID', First_Name AS 'Name', Shareholder_Status As 'Shareholder', " +
+                " IIF(Gender=1,'Male','Female') AS Gender, Ethnicity, Employment_Status AS 'Employment', Department " +
                 "FROM Personal, Employment, Job_History where Personal.Employee_ID = Job_History.Employee_ID And Personal.Employee_ID = Employment.Employee_ID And (Personal.First_Name like '" + Searchtext.Text + "%' OR Personal.Employee_ID like '" + Searchtext.Text + "%')";
             SqlDataAdapter SqlAdapter = new SqlDataAdapter(sql, SqlConn);
             DataTable DT = new DataTable();
@@ -117,7 +88,7 @@ namespace Integration.Pages
             ds.PrimaryKey = new DataColumn[] { ds.Columns["Employee ID"] };
             foreach (var item in hrID)
             {
-                query = "select idEmployee AS 'Employee ID',`Paid To Date`, `Paid Last Year` from Employee " +
+                string query = "select idEmployee AS 'Employee ID',`Paid To Date`, `Paid Last Year` from Employee " +
                     "where Employee.idEmployee = '" + item + "' AND `Paid To Date` IS NOT NULL AND `Paid Last Year` IS NOT NULL";
                 MySqlDataAdapter sda = new MySqlDataAdapter(query, constr);
                 sda.Fill(ds);
@@ -128,6 +99,51 @@ namespace Integration.Pages
             TEDataSeparateHandle(DT, ds, hrID, prID);
             GridView1.DataSource = DT;
             GridView1.DataBind();
+            EnablePagingButton();
+        }
+
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridView1.PageIndex = e.NewPageIndex;
+            //EnablePagingButton();
+            SelectQuery();
+        }
+
+        private void EnablePagingButton()
+        {
+            if (GridView1.PageCount == 1)
+            {
+                Next.Enabled = Previous.Enabled = false;
+            }
+            else if (GridView1.PageIndex == 0 || GridView1.PageIndex == GridView1.PageCount - 1)
+            {
+                if (GridView1.PageIndex == GridView1.PageCount - 1)
+                {
+                    Next.Enabled = false;
+                    Previous.Enabled = true;
+                }
+                else
+                {
+                    Previous.Enabled = false;
+                    Next.Enabled = true;
+                }
+            }
+            else if (!Next.Enabled || !Previous.Enabled)
+            {
+                Next.Enabled = Previous.Enabled = true;
+            }
+        }
+
+        protected void Previous_Click(object sender, EventArgs e)
+        {
+            --GridView1.PageIndex;
+            SelectQuery();
+        }
+
+        protected void Next_Click(object sender, EventArgs e)
+        {
+            ++GridView1.PageIndex;
+            SelectQuery();
         }
     }
 }

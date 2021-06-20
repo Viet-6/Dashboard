@@ -76,6 +76,7 @@
             Description.focus();
             return false;
         }
+        
         var email = Email;
         if (Email != null)
         {
@@ -199,7 +200,7 @@
                                 </div>
                                 <div class="form-group col-md-4 " > <br />
                                     <asp:RadioButtonList ID="Gender" runat="server" Width="161px" Height="25px" RepeatDirection="Horizontal">
-                                        <asp:ListItem Value="1">Male</asp:ListItem>
+                                        <asp:ListItem Value="1" Selected="True">Male</asp:ListItem>
                                         <asp:ListItem Value="0">Female</asp:ListItem>
                                     </asp:RadioButtonList>
                                 </div>

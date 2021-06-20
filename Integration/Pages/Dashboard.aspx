@@ -89,7 +89,7 @@
             <div class="cards">
                 <div class="cards-single">
                     <div>
-                        <h1>100</h1>
+                        <h1><asp:Label ID="sharehol" runat="server" Text="0" ForeColor="Black"></asp:Label></h1>
                         <span>Shareholder</span>
                     </div>
                     <div>
@@ -98,7 +98,7 @@
                 </div>
                 <div class="cards-single">
                     <div>
-                        <h1>40</h1>
+                        <h1><asp:Label ID="Employ" runat="server" Text="0" ForeColor="Black"></asp:Label></h1>
                         <span>Employee</span>
                     </div>
                     <div>
@@ -107,7 +107,7 @@
                 </div>
                 <div class="cards-single">
                     <div>
-                        <h1>90</h1>
+                        <h1><asp:Label ID="male" runat="server" Text="0" ForeColor="Black"></asp:Label></h1>
                         <span>Male</span>
                     </div>
                     <div>
@@ -116,7 +116,7 @@
                 </div>
                 <div class="cards-single">
                     <div>
-                        <h1>50</h1>
+                        <h1><asp:Label ID="female" runat="server" Text="0" ForeColor="Black"></asp:Label></h1>
                         <span>Female</span>
                     </div>
                     <div>

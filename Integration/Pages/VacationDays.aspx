@@ -95,11 +95,14 @@
                         <div class="card">
                             <div class="card-header">
                                 <h2>Shareholder List</h2>
-                                <button>Next<span class="fa fa-arrow-right "></span></button>
+                                <div>
+                                    <asp:Button ID="Previous" runat="server" class="find" Text="Previous" OnClick="Previous_Click" Enabled ="false"></asp:Button>
+                                    <asp:Button ID="Next" runat="server" class="find" Text="Next" OnClick="Next_Click"></asp:Button>
+                                    </div>
                             </div>
                             <div class="card-body">
                                 <table width="100%">
-                                    <asp:GridView ID="GridView1" runat="server" width="100%"></asp:GridView>
+                                    <asp:GridView ID="GridView1" runat="server" width="100%" AllowPaging="True" PageSize="12" OnPageIndexChanging="GridView1_PageIndexChanging"></asp:GridView>
                                 </table>
                             </div>
                         </div>

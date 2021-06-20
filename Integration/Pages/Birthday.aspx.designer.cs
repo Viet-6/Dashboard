@@ -31,6 +31,33 @@ namespace Integration.Pages {
         protected global::System.Web.UI.WebControls.Button Find;
         
         /// <summary>
+        /// CheckFindx control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox CheckFindx;
+        
+        /// <summary>
+        /// Previous control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Previous;
+        
+        /// <summary>
+        /// Next control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Next;
+        
+        /// <summary>
         /// GridView1 control.
         /// </summary>
         /// <remarks>

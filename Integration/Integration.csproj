@@ -114,7 +114,9 @@
     <Content Include="Pages\NewEmployee.aspx" />
     <Content Include="Pages\TotalEarning.aspx" />
     <Content Include="Pages\VacationDays.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="webfonts\fa-brands-400.svg" />
     <Content Include="webfonts\fa-regular-400.svg" />
     <Content Include="webfonts\fa-solid-900.svg" />

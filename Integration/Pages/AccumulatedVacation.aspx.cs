@@ -25,7 +25,7 @@ namespace Integration.Pages
                 id.Add(t.Rows[i][0].ToString());
             }
         }
-        private void AVDataSeparateHandle(DataTable first_table, DataTable second_table, 
+        private void AVDataSeparateHandle(DataTable first_table, DataTable second_table,
             List<string> first_table_key, List<string> second_table_key)//Accumulated Vacation data Separate Handle
         {
             foreach (var key in first_table_key)
@@ -131,30 +131,14 @@ namespace Integration.Pages
 
         protected void Previous_Click(object sender, EventArgs e)
         {
-            if (GridView1.PageIndex == GridView1.PageCount-1)
-            {
-                Next.Enabled = true;
-            }
             --GridView1.PageIndex;
             SelectQuery();
-            if(GridView1.PageIndex <= 0)
-            {
-                Previous.Enabled = false;
-            }
         }
 
         protected void Next_Click(object sender, EventArgs e)
         {
-            if (GridView1.PageIndex == 0)
-            {
-                Previous.Enabled = true;
-            }
             ++GridView1.PageIndex;
             SelectQuery();
-            if(GridView1.PageIndex == GridView1.PageCount-1)
-            {
-                Next.Enabled = false;
-            }
         }
     }
 }
