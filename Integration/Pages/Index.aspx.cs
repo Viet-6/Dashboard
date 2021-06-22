@@ -13,5 +13,17 @@ namespace Integration.Pages
         {
 
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            if(user.Text=="admin" && pass.Text == "123456")
+            {
+                Response.Redirect("Dashboard.aspx");
+            }
+            else
+            {
+                Response.Write("<script>alert('Đăng nhập không thành công!!')</script>");
+            }
+        }
     }
 }

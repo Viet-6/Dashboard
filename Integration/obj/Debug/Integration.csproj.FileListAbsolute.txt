@@ -39,3 +39,41 @@ C:\Users\Administrator\Desktop\Dashboard\Integration\obj\Debug\Integration.pdb
 C:\Users\Administrator\Desktop\Dashboard\Integration\bin\MySql.Data.Entity.dll
 C:\Users\Administrator\Desktop\Dashboard\Integration\bin\MySql.Data.EntityFramework.dll
 C:\Users\Administrator\Desktop\Dashboard\Integration\bin\MySql.Data.EntityFramework.xml
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\Integration.dll.config
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\Integration.dll
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\Integration.pdb
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\MySql.Data.dll
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\MySql.Data.EntityFramework.dll
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\MySql.Web.dll
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\System.Web.Helpers.dll
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\System.Web.Mvc.dll
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\System.Web.Razor.dll
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\System.Web.WebPages.Deployment.dll
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\System.Web.WebPages.dll
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\System.Web.WebPages.Razor.dll
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\Google.Protobuf.dll
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\Zstandard.Net.dll
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\K4os.Compression.LZ4.Streams.dll
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\BouncyCastle.Crypto.dll
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\Ubiety.Dns.Core.dll
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\System.Memory.dll
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\System.Buffers.dll
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\K4os.Compression.LZ4.dll
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\K4os.Hash.xxHash.dll
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\System.Numerics.Vectors.dll
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\MySql.Data.xml
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\MySql.Data.EntityFramework.xml
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\MySql.Web.xml
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\System.Web.Helpers.xml
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\System.Web.Mvc.xml
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\System.Web.Razor.xml
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\System.Web.WebPages.xml
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\System.Web.WebPages.Deployment.xml
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\bin\System.Web.WebPages.Razor.xml
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\obj\Debug\Integration.csprojAssemblyReference.cache
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\obj\Debug\Integration.csproj.CoreCompileInputs.cache
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\obj\Debug\Integration.csproj.CopyComplete
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\obj\Debug\Integration.dll
+C:\Users\OS\OneDrive\Máy tính\Proeject\Dashboard\Integration\obj\Debug\Integration.pdb

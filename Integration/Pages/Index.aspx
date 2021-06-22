@@ -18,7 +18,7 @@
     <div class="limiter ">
         <div class="container-login100">
             <div class="wrap-login100">
-                <form class="login100-form validate-form">
+                <form id="form1" runat="server">
                     <span class="login100-form-logo">
                         <i class="lab la-accusoft"></i>
                     </span>
@@ -28,32 +28,35 @@
                     </span>
 
                     <div class="wrap-input100 validate-input">
-                        <input class="input100" type="text" name="username" placeholder="Username">
+                         <asp:TextBox ID="user" runat="server" type="username" name="username" placeholder="Username" class="input100"></asp:TextBox>
+                        <%--<input class="input100" type="text" name="username" placeholder="Username">--%>
                         <span class="focus-input100" data-placeholder="&#xf207;"></span>
                     </div>
 
                     <div class="wrap-input100 validate-input">
-                        <input class="input100" type="password" name="pass" placeholder="Password">
+                        <asp:TextBox ID="pass" runat="server" type="password" name="password" placeholder="Password" class="input100"></asp:TextBox>
+                        <%--<input class="input100" type="password" name="pass" placeholder="Password">--%>
                         <span class="focus-input100" data-placeholder="&#xf191;"></span>
                     </div>
 
                     <div class="contact100-form-checkbox">
-                        <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                        <%--<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
                         <label class="label-checkbox100" for="ckb1">
-                            Remember me
-                        </label>
+                            remember me
+                        </label>--%>
                     </div>
 
                     <div class="container-login100-form-btn">
-                        <button class="login100-form-btn">
+                       <%-- <button class="login100-form-btn">
                             Login
-                        </button>
+                        </button>--%>
+                        <asp:Button ID="Button1" Class="login100-form-btn" runat="server" OnClick="Button1_Click" Text="Login" />
                     </div>
 
                     <div class="text-center p-t-90">
-                        <a class="txt1" href="Dashboard.aspx">
+                        <%--<a class="txt1" href="Dashboard.aspx">
                             Forgot Password?
-                        </a>
+                        </a>--%>
                     </div>
                 </form>
             </div>
