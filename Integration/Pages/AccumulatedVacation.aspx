@@ -103,7 +103,7 @@
                             </div>
                             <div class="card-body">
                                 <table width="100%">
-                                    <asp:GridView ID="GridView1" runat="server" width="100%" AllowPaging="True" OnPageIndexChanging="GridView1_PageIndexChanging" PageSize="12"></asp:GridView>
+                                    <asp:GridView ID="GridView1" runat="server" width="100%" AllowPaging="True" OnPageIndexChanging="GridView1_PageIndexChanging" PageSize="9"></asp:GridView>
                                 </table>
                             </div>
                         </div>

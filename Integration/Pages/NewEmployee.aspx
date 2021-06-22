@@ -267,9 +267,9 @@
                              <div class="form-group col-md-4">
                                     <label for="">Department</label>
                                     <asp:DropDownList ID="department" runat="server" class="form-control">
-                                            <asp:ListItem Text="Designer" Value ="Designer"></asp:ListItem>
-                                            <asp:ListItem Text="Developer" Value ="Developer"></asp:ListItem>
-                                            <asp:ListItem Text="Tester" Value ="Tester"></asp:ListItem>
+                                            <asp:ListItem Text="Design" Value ="Design"></asp:ListItem>
+                                            <asp:ListItem Text="Develop" Value ="Develop"></asp:ListItem>
+                                            <asp:ListItem Text="Test" Value ="Test"></asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
                         </div>
